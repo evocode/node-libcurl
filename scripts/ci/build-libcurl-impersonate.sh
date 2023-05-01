@@ -65,13 +65,6 @@ else
   make distclean || true;
 fi
 
-pwd
-echo "DEBUG"
-which gcc || true
-gcc -dumpfullversion || true
-which g++ || true
-g++ --version || true
-
 touch $2/source/$1/config.log
 chmod +x $2/source/$1/configure
 
