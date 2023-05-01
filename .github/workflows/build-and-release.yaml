@@ -10,8 +10,7 @@ on:
     tags:
       - '*'
     branches:
-      - master
-      - develop
+      - impersonate
   workflow_dispatch:
     inputs:
       publish-binary:
@@ -35,18 +34,22 @@ jobs:
       fail-fast: false
       matrix:
         os:
-          - macos-11
-          - ubuntu-20.04
+          # - macos-12
+          - ubuntu-22.04
         libcurl-release:
           - 7.86.0
+        libcurlimpersonate-release:
+          - 0.5.4
         node:
-          - 14
-          - 16
-          - 18
+          # - 14
+          # - 16
+          # - 18
           - 19
     env:
       LIBCURL_RELEASE: ${{ matrix.libcurl-release }}
       LATEST_LIBCURL_RELEASE: ${{ matrix.libcurl-release }}
+      LIBCURLIMPERSONATE_RELEASE: ${{ matrix.libcurlimpersonate-release }}
+      LATEST_LIBCURLIMPERSONATE_RELEASE: ${{ matrix.libcurlimpersonate-release }}
     steps:
       - id: timestamp
         run: echo "::set-output name=timestamp::$(timestamp +%s)"
@@ -135,7 +138,7 @@ jobs:
       - name: 'Publish Binary'
         if: steps.run_result.outputs.run_result != 'success'
         run: |
-          GIT_COMMIT=${{ github.sha }} GIT_TAG=$GIT_TAG ./scripts/ci/build.sh
+          GIT_COMMIT=${{ github.sha }} GIT_TAG=$GIT_TAG ./scripts/ci/build.impersonate.sh
       - name: Upload artifacts
         if: always() && steps.run_result.outputs.run_result != 'success'
         uses: actions/upload-artifact@v2
@@ -145,106 +148,106 @@ jobs:
           retention-days: 5
       - run: echo "::set-output name=run_result::success" > run_result
 
-  build-and-release-electron:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        # we use CircleCI for linux binaries
-        os:
-          - macos-11
-        libcurl-release:
-          - 7.86.0
-        node:
-          - 18
-        electron-version:
-          - 21.0.1
-          - 20.0.3
-          - 19.1.1
-          - 18.3.15
-          - 17.4.11
-    env:
-      LIBCURL_RELEASE: ${{ matrix.libcurl-release }}
-      LATEST_LIBCURL_RELEASE: ${{ matrix.libcurl-release }}
-      ELECTRON_VERSION: ${{ matrix.electron-version }}
-    steps:
-      - id: timestamp
-        run: echo "::set-output name=timestamp::$(timestamp +%s)"
-      - name: Restore the previous run result
-        uses: actions/cache@v3
-        with:
-          path: |
-            run_result
-          key: v1-${{ matrix.os }}-${{ matrix.libcurl-release }}-${{ matrix.electron-version }}-${{ github.run_id }}-${{ runner.os }}-${{ github.job }}-${{ steps.timestamp.outputs.timestamp }}
-          restore-keys: |
-            v1-${{ matrix.os }}-${{ matrix.libcurl-release }}-${{ matrix.electron-version }}-${{ github.run_id }}-${{ runner.os }}-${{ github.job }}-
-      - id: run_result
-        run: cat run_result 2>/dev/null || echo 'default'
-      - run: echo "NODE_LIBCURL_CPP_STD=${{ matrix.node-libcurl-cpp-std }}" >> $GITHUB_ENV
-      - name: Checkout
-        uses: actions/checkout@main
-      - name: Setup Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node }}
-      - name: Install Needed packages
-        run: brew install coreutils wget automake libtool cmake gnu-sed m4
-      # not using brew for that one as we need 2.69
-      - name: Install autoconf
-        run: |
-          curl -O -L http://ftpmirror.gnu.org/autoconf/autoconf-2.69.tar.gz
-          tar -xzf autoconf-2.69.tar.gz
-          cd autoconf-*
-          ./configure
-          make
-          make install
-          autoconf --version
-          ln -s /usr/local/bin/glibtoolize /usr/local/bin/libtoolize
-      - name: Output yarn cache dir
-        id: yarn-cache-dir
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-      - name: Restore Yarn Cache
-        uses: actions/cache@v3
-        id: yarn-cache
-        with:
-          path: ${{ steps.yarn-cache-dir.outputs.dir }}
-          key: v1-${{ runner.os }}-yarn-cache-${{ github.ref }}-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            v1-${{ runner.os }}-yarn-cache-${{ github.ref }}-
-            v1-${{ runner.os }}-yarn-cache-
-      - name: Restore Electron Cache
-        uses: actions/cache@v3
-        with:
-          path: ~/Library/Caches/electron
-          key: v1-${{ runner.os }}-electron-cache-${{ matrix.electron-version }}
-          restore-keys: |
-            v1-${{ runner.os }}-electron-cache-${{ matrix.electron-version }}
-            v1-${{ runner.os }}-electron-cache-
-      - name: Restore libcurl deps cache
-        uses: actions/cache@v3
-        id: libcurl-deps-cache
-        with:
-          path: |
-            ~/.node-gyp
-            ~/deps
-          key: v4-${{ runner.os }}-libcurl-deps-cache-electron-${{ matrix.electron-version }}
-          restore-keys: |
-            v4-${{ runner.os }}-libcurl-deps-cache-electron-${{ matrix.electron-version }}
-      - name: 'Set GIT_TAG'
-        if: startsWith(github.ref, 'refs/tags')
-        run: echo "GIT_TAG=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
-      - name: 'Publish Binary'
-        if: steps.run_result.outputs.run_result != 'success'
-        run: |
-          GIT_COMMIT=${{ github.sha }} GIT_TAG=$GIT_TAG ./scripts/ci/build.sh
-      - name: Upload artifacts
-        if: always() && steps.run_result.outputs.run_result != 'success'
-        uses: actions/upload-artifact@v2
-        with:
-          name: build-logs-${{ matrix.os }}-${{ matrix.libcurl-release }}-${{ matrix.electron-version }}
-          path: ./logs/
-          retention-days: 5
-      - run: echo "::set-output name=run_result::success" > run_result
+  # build-and-release-electron:
+  #   runs-on: ${{ matrix.os }}
+  #   strategy:
+  #     fail-fast: false
+  #     matrix:
+  #       # we use CircleCI for linux binaries
+  #       os:
+  #         - macos-11
+  #       libcurl-release:
+  #         - 7.86.0
+  #       node:
+  #         - 18
+  #       electron-version:
+  #         - 21.0.1
+  #         - 20.0.3
+  #         - 19.1.1
+  #         - 18.3.15
+  #         - 17.4.11
+  #   env:
+  #     LIBCURL_RELEASE: ${{ matrix.libcurl-release }}
+  #     LATEST_LIBCURL_RELEASE: ${{ matrix.libcurl-release }}
+  #     ELECTRON_VERSION: ${{ matrix.electron-version }}
+  #   steps:
+  #     - id: timestamp
+  #       run: echo "::set-output name=timestamp::$(timestamp +%s)"
+  #     - name: Restore the previous run result
+  #       uses: actions/cache@v3
+  #       with:
+  #         path: |
+  #           run_result
+  #         key: v1-${{ matrix.os }}-${{ matrix.libcurl-release }}-${{ matrix.electron-version }}-${{ github.run_id }}-${{ runner.os }}-${{ github.job }}-${{ steps.timestamp.outputs.timestamp }}
+  #         restore-keys: |
+  #           v1-${{ matrix.os }}-${{ matrix.libcurl-release }}-${{ matrix.electron-version }}-${{ github.run_id }}-${{ runner.os }}-${{ github.job }}-
+  #     - id: run_result
+  #       run: cat run_result 2>/dev/null || echo 'default'
+  #     - run: echo "NODE_LIBCURL_CPP_STD=${{ matrix.node-libcurl-cpp-std }}" >> $GITHUB_ENV
+  #     - name: Checkout
+  #       uses: actions/checkout@main
+  #     - name: Setup Node.js
+  #       uses: actions/setup-node@v1
+  #       with:
+  #         node-version: ${{ matrix.node }}
+  #     - name: Install Needed packages
+  #       run: brew install coreutils wget automake libtool cmake gnu-sed m4
+  #     # not using brew for that one as we need 2.69
+  #     - name: Install autoconf
+  #       run: |
+  #         curl -O -L http://ftpmirror.gnu.org/autoconf/autoconf-2.69.tar.gz
+  #         tar -xzf autoconf-2.69.tar.gz
+  #         cd autoconf-*
+  #         ./configure
+  #         make
+  #         make install
+  #         autoconf --version
+  #         ln -s /usr/local/bin/glibtoolize /usr/local/bin/libtoolize
+  #     - name: Output yarn cache dir
+  #       id: yarn-cache-dir
+  #       run: echo "::set-output name=dir::$(yarn cache dir)"
+  #     - name: Restore Yarn Cache
+  #       uses: actions/cache@v3
+  #       id: yarn-cache
+  #       with:
+  #         path: ${{ steps.yarn-cache-dir.outputs.dir }}
+  #         key: v1-${{ runner.os }}-yarn-cache-${{ github.ref }}-${{ hashFiles('**/yarn.lock') }}
+  #         restore-keys: |
+  #           v1-${{ runner.os }}-yarn-cache-${{ github.ref }}-
+  #           v1-${{ runner.os }}-yarn-cache-
+  #     - name: Restore Electron Cache
+  #       uses: actions/cache@v3
+  #       with:
+  #         path: ~/Library/Caches/electron
+  #         key: v1-${{ runner.os }}-electron-cache-${{ matrix.electron-version }}
+  #         restore-keys: |
+  #           v1-${{ runner.os }}-electron-cache-${{ matrix.electron-version }}
+  #           v1-${{ runner.os }}-electron-cache-
+  #     - name: Restore libcurl deps cache
+  #       uses: actions/cache@v3
+  #       id: libcurl-deps-cache
+  #       with:
+  #         path: |
+  #           ~/.node-gyp
+  #           ~/deps
+  #         key: v4-${{ runner.os }}-libcurl-deps-cache-electron-${{ matrix.electron-version }}
+  #         restore-keys: |
+  #           v4-${{ runner.os }}-libcurl-deps-cache-electron-${{ matrix.electron-version }}
+  #     - name: 'Set GIT_TAG'
+  #       if: startsWith(github.ref, 'refs/tags')
+  #       run: echo "GIT_TAG=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+  #     - name: 'Publish Binary'
+  #       if: steps.run_result.outputs.run_result != 'success'
+  #       run: |
+  #         GIT_COMMIT=${{ github.sha }} GIT_TAG=$GIT_TAG ./scripts/ci/build.impersonate.sh
+  #     - name: Upload artifacts
+  #       if: always() && steps.run_result.outputs.run_result != 'success'
+  #       uses: actions/upload-artifact@v2
+  #       with:
+  #         name: build-logs-${{ matrix.os }}-${{ matrix.libcurl-release }}-${{ matrix.electron-version }}
+  #         path: ./logs/
+  #         retention-days: 5
+  #     - run: echo "::set-output name=run_result::success" > run_result
 
   # disabled until nwjs supports newer node-gyp versions + python 3
   # build-and-release-nwjs:
@@ -328,7 +331,7 @@ jobs:
   #     - name: 'Publish Binary'
   #       if: steps.run_result.outputs.run_result != 'success'
   #       run: |
-  #         GIT_COMMIT=${{ github.sha }} GIT_TAG=$GIT_TAG ./scripts/ci/build.sh
+  #         GIT_COMMIT=${{ github.sha }} GIT_TAG=$GIT_TAG ./scripts/ci/build.impersonate.sh
   #     - name: Upload artifacts
   #       if: always() && steps.run_result.outputs.run_result != 'success'
   #       uses: actions/upload-artifact@v2
