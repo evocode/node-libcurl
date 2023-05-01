@@ -31,6 +31,7 @@ if [ ! -d $2/source/libcurl ]; then
   echo "Using release tarball"
 
   cd $curr_pwd
+  echo "https://github.com/curl/curl/releases/download/curl-$version_with_dashes/curl-$CURL_VERSION.tar.gz"
   $curr_dirname/download-and-unpack.sh \
     https://github.com/curl/curl/releases/download/curl-$version_with_dashes/curl-$CURL_VERSION.tar.gz \
     $2
@@ -52,8 +53,9 @@ if [ ! -d $2/source/$1 ]; then
   echo "Using release tarball"
 
   cd $curr_pwd
+  echo "https://github.com/evocode/curl-impersonate/archive/refs/heads/main.zip"
   $curr_dirname/download-and-unpack-zip.sh \
-    https://github.com/evocore/curl-impersonate/archive/refs/heads/main.zip \
+    https://github.com/evocode/curl-impersonate/archive/refs/heads/main.zip \
     $2
 
   mv $2/curl-impersonate-main $2/source/$1
@@ -61,6 +63,8 @@ if [ ! -d $2/source/$1 ]; then
 else
   cd $2/source/$1
 fi
+
+touch $2/source/$1/config.log
 
 chmod +x $2/source/$1/configure
 
