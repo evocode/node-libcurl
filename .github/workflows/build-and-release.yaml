@@ -94,10 +94,10 @@ jobs:
           fi
 
           # for firefox
-          if ! command -v pip; then
-            sudo apt-get install -y python3-pip libnss3
-            pip install gyp-next
-          fi
+          #if ! command -v pip; then
+          #  sudo apt-get install -y python3-pip libnss3
+          #  pip install gyp-next
+          #fi
 
           # for chrome
           if ! command -v go; then
@@ -105,7 +105,8 @@ jobs:
           fi
 
           # Add gyp to PATH
-          export PATH="$PATH:~/.local/bin"
+          #export PATH="$PATH:~/.local/bin"
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
       - name: Checkout
         uses: actions/checkout@main
       - name: Setup Node.js
@@ -117,16 +118,17 @@ jobs:
       - if: runner.os == 'macOS'
         name: Install Needed packages on macOS
         run: |
-          brew install coreutils wget automake libtool make cmake ninja gnu-sed m4 pkg-config
+          brew install coreutils wget automake libtool cmake ninja gnu-sed m4 pkg-config
           # For the Firefox version only
-          brew install sqlite nss
-          pip3 install gyp-next
+          #brew install sqlite nss
+          #pip3 install gyp-next
           # For the Chrome version only
           brew install go
           # https://github.com/JCMais/node-libcurl/issues/296
-          brew install curl-openssl
+          #brew install curl-openssl
           #export PATH="/opt/homebrew/opt/curl/bin:$PATH"
-          export PATH="/usr/local/opt/curl/bin:$PATH"
+          #export PATH="/usr/local/opt/curl/bin:$PATH"
+          #echo "/usr/local/opt/curl/bin" >> $GITHUB_PATH
       # not using brew for that one as we need 2.69
       - if: runner.os == 'macOS'
         name: Install autoconf on macOS
