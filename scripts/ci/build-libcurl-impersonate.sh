@@ -62,6 +62,7 @@ if [ ! -d $2/source/$1 ]; then
   cd $2/source/$1
 else
   cd $2/source/$1
+  make distclean || true;
 fi
 
 touch $2/source/$1/config.log
