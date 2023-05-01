@@ -35,7 +35,7 @@ if [ ! -d $2/source/libcurl ]; then
     https://github.com/curl/curl/releases/download/curl-$version_with_dashes/curl-$CURL_VERSION.tar.gz \
     $2
 
-  mv $2/curl-$1CURL_VERSION $2/source/libcurl
+  mv $2/curl-$CURL_VERSION $2/source/libcurl
   cd $2/source/libcurl
   pwd
   ls -al
