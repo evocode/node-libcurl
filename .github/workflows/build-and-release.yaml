@@ -133,8 +133,6 @@ jobs:
           #echo "/usr/local/opt/curl/bin" >> $GITHUB_PATH
           echo "CC=gcc-11" >> $GITHUB_ENV
           echo "CXX=g++-11" >> $GITHUB_ENV
-          CC=gcc-11
-          $CC --version
       # not using brew for that one as we need 2.69
       - if: runner.os == 'macOS'
         name: Install autoconf on macOS
@@ -147,6 +145,16 @@ jobs:
           make install
           autoconf --version
           ln -s /usr/local/bin/glibtoolize /usr/local/bin/libtoolize
+      - if: runner.os == 'macOS'
+        name: Debug macOS
+        run: |
+          env
+          which cmake && cmake --version
+          which make && make --version
+          which autoconf && autoconf --version
+          which python && python --version
+          which $CC && $CC --version
+          which $CXX && $CXX --version
       - name: Output yarn cache dir
         id: yarn-cache-dir
         run: echo "::set-output name=dir::$(yarn cache dir)"
