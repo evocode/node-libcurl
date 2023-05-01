@@ -129,6 +129,12 @@ jobs:
           #export PATH="/opt/homebrew/opt/curl/bin:$PATH"
           #export PATH="/usr/local/opt/curl/bin:$PATH"
           #echo "/usr/local/opt/curl/bin" >> $GITHUB_PATH
+          if [ "${{ matrix.os }}" = "macos-11" ]; then
+            echo "CC=gcc-12" >> $GITHUB_ENV
+            echo "CXX=g++-12" >> $GITHUB_ENV
+            CC=gcc-12
+            $CC --version
+          fi
       # not using brew for that one as we need 2.69
       - if: runner.os == 'macOS'
         name: Install autoconf on macOS
