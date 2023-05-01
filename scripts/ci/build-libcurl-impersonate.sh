@@ -37,8 +37,6 @@ if [ ! -d $2/source/libcurl ]; then
 
   mv $2/curl-$CURL_VERSION $2/source/libcurl
   cd $2/source/libcurl
-  pwd
-  ls -al
 else
   cd $2/source/libcurl
   if [ -f ./configure ]; then
@@ -84,3 +82,4 @@ cp -r 2/source/libcurl/include $build_folder/include
 cd $build_folder
 pwd
 ls -al
+ls -al include
