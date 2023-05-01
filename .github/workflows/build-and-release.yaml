@@ -131,12 +131,13 @@ jobs:
           #export PATH="/opt/homebrew/opt/curl/bin:$PATH"
           #export PATH="/usr/local/opt/curl/bin:$PATH"
           #echo "/usr/local/opt/curl/bin" >> $GITHUB_PATH
+          # echo "CC=gcc-11"
           # echo "CC=gcc-11" >> $GITHUB_ENV
+          # echo "CXX=g++-11"
           # echo "CXX=g++-11" >> $GITHUB_ENV
-          brew --prefix
-          brew --prefix llvm
           echo "CC=$(brew --prefix llvm)/bin/clang"
           echo "CC=$(brew --prefix llvm)/bin/clang" >> $GITHUB_ENV
+          echo "CXX=$(brew --prefix llvm)/bin/clang++"
           echo "CXX=$(brew --prefix llvm)/bin/clang++" >> $GITHUB_ENV
       # not using brew for that one as we need 2.69
       - if: runner.os == 'macOS'
@@ -158,8 +159,10 @@ jobs:
           which make && make --version
           which autoconf && autoconf --version
           which python && python --version
-          which $CC && $CC --version
-          which $CXX && $CXX --version
+          echo $CC && $CC --version
+          # which $CC && $CC --version
+          echo $CXX && $CXX --version
+          # which $CXX && $CXX --version
       - name: Output yarn cache dir
         id: yarn-cache-dir
         run: echo "::set-output name=dir::$(yarn cache dir)"
