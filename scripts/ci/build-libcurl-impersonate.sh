@@ -65,11 +65,7 @@ else
 fi
 
 touch $2/source/$1/config.log
-
 chmod +x $2/source/$1/configure
-
-pwd
-ls -al
 
 ./configure \
     --prefix=$build_folder \
@@ -81,7 +77,7 @@ else
   make chrome-build && make chrome-install
 fi
 
-cp -r 2/source/libcurl/include $build_folder/include
+cp -r $2/source/libcurl/include $build_folder/include
 
 cd $build_folder
 pwd
