@@ -76,10 +76,14 @@ jobs:
             sudo apt-get install -y cmake
           fi
 
+          if ! command -v ninja; then
+            sudo apt-get install -y ninja-build
+          fi
+
           if ! command -v curl; then
             # we will assume a lot of other ones are missing
             sudo apt-get install -y software-properties-common
-            sudo apt-add-repository ppa:git-core/ppa && sudo apt-get update && sudo apt-get install -y git curl wget python autoconf libtool-bin m4 groff groff-base pkg-config automake bzip2 apt-transport-https ca-certificates
+            sudo apt-add-repository ppa:git-core/ppa && sudo apt-get update && sudo apt-get install -y build-essential git curl wget python autoconf libtool-bin m4 groff groff-base pkg-config automake bzip2 apt-transport-https ca-certificates
           fi
 
           if ! command -v yarn; then
@@ -87,6 +91,20 @@ jobs:
             curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
             sudo apt-get update && sudo apt-get install -y yarn
           fi
+
+          # for firefox
+          if ! command -v pip; then
+            sudo apt-get install -y python3-pip libnss3
+            pip install gyp-next
+          fi
+
+          # for chrome
+          if ! command -v go; then
+            sudo apt-get install -y golang-go unzip
+          fi
+
+          # Add gyp to PATH
+          export PATH="$PATH:~/.local/bin"
       - name: Checkout
         uses: actions/checkout@main
       - name: Setup Node.js
