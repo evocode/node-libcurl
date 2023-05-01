@@ -12,7 +12,6 @@ dist/
 docs/
 examples/
 lib/binding/node_libcurl.node
-lib/binding/node_libcurl_impersonate.node
 node_modules/
 tsconfig.tsbuildinfo
 website/

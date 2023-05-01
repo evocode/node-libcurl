@@ -448,11 +448,11 @@ fi
 # if [[ $TRAVIS_OS_NAME == "osx" ]]; then
 ls -alh ./lib/binding/
 if [ "$(uname)" == "Darwin" ]; then
-  otool -L ./lib/binding/node_libcurl_impersonate.node || true
+  otool -L ./lib/binding/node_libcurl.node || true
 else
-  cat ./build/node_libcurl_impersonate.target.mk || true
-  readelf -d ./lib/binding/node_libcurl_impersonate.node || true
-  ldd ./lib/binding/node_libcurl_impersonate.node || true
+  cat ./build/node_libcurl.target.mk || true
+  readelf -d ./lib/binding/node_libcurl.node || true
+  ldd ./lib/binding/node_libcurl.node || true
 fi
 
 if [ "$RUN_TESTS" == "true" ]; then
@@ -478,13 +478,13 @@ if [[ $PUBLISH_BINARY == true && $LIBCURL_RELEASE == $LATEST_LIBCURL_RELEASE ]];
     # for different architectures.
     # --
     # Build and publish x64 package
-    lipo build/Release/node_libcurl_impersonate.node -thin x86_64 -output lib/binding/node_libcurl_impersonate.node
+    lipo build/Release/node_libcurl.node -thin x86_64 -output lib/binding/node_libcurl.node
     npm_config_target_arch=x64 yarn pregyp package testpackage --verbose
     npm_config_target_arch=x64 node scripts/module-packaging.js --publish \
       "$(npm_config_target_arch=x64 yarn --silent pregyp reveal staged_tarball --silent)"
   
     # Build and publish arm64 package.
-    lipo build/Release/node_libcurl_impersonate.node -thin arm64 -output lib/binding/node_libcurl_impersonate.node
+    lipo build/Release/node_libcurl.node -thin arm64 -output lib/binding/node_libcurl.node
     npm_config_target_arch=arm64 yarn pregyp package --verbose  # Can't testpackage for arm64 yet.
     npm_config_target_arch=arm64 node scripts/module-packaging.js --publish \
       "$(npm_config_target_arch=arm64 yarn --silent pregyp reveal staged_tarball --silent)"
