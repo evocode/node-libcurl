@@ -67,8 +67,6 @@ fi
 
 pwd
 echo "DEBUG"
-echo "CC: $CC" || true
-echo "CXX: $CXX" || true
 which gcc || true
 gcc -dumpfullversion || true
 which g++ || true
