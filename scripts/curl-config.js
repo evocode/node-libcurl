@@ -20,10 +20,10 @@ if (!argv[2]) {
 
 const arg = argv[2].trim()
 
-exec(`curl-config ${arg}`, function (error, stdout, stderr) {
+exec(`curl-impersonate-config ${arg}`, function (error, stdout, stderr) {
   if (error != null) {
     console.error(
-      'Could not run curl-config, please make sure libcurl dev package is installed.',
+      'Could not run curl-impersonate-config, please make sure libcurl dev package is installed.',
     )
     console.error('Output: ' + stderr)
     process.exit(1)

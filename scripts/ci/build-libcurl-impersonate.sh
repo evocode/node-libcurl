@@ -77,9 +77,12 @@ else
   make chrome-build && make chrome-install
 fi
 
+# copy curl include to build folder
 cp -r $2/source/libcurl/include $build_folder/include
 
-cd $build_folder
+# create symlinks without chrome for default usage
+cd $build_folder/bin
+ln -s curl-impersonate-chrome curl-impersonate && \
+  ln -s curl-impersonate-chrome-config curl-impersonate-config
 pwd
 ls -al
-ls -al include
