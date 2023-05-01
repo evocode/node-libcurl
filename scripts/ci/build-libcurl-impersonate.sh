@@ -65,6 +65,14 @@ else
   make distclean || true;
 fi
 
+pwd
+echo "CC: $CC"
+echo "CXX: $CXX"
+which gcc
+gcc -dumpfullversion || true
+which g++
+g++ --version || true
+
 touch $2/source/$1/config.log
 chmod +x $2/source/$1/configure
 
