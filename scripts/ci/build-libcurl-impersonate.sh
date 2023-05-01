@@ -66,11 +66,12 @@ else
 fi
 
 pwd
-echo "CC: $CC"
-echo "CXX: $CXX"
-which gcc
+echo "DEBUG"
+echo "CC: $CC" || true
+echo "CXX: $CXX" || true
+which gcc || true
 gcc -dumpfullversion || true
-which g++
+which g++ || true
 g++ --version || true
 
 touch $2/source/$1/config.log
