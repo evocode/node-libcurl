@@ -73,7 +73,7 @@ ls -al
 
 ./configure \
     --prefix=$build_folder \
-    "${@:3}"
+    "${@:4}"
 
 if [ "$(uname)" == "Darwin" ]; then
   gmake chrome-build && gmake chrome-install
