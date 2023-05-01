@@ -77,6 +77,10 @@ else
   make chrome-build && make chrome-install
 fi
 
+cd $build_folder
+pwd
+ls -al
+
 # copy curl include to build folder
 cp -r $2/source/libcurl/include $build_folder/include
 

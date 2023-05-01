@@ -123,6 +123,10 @@ jobs:
           pip3 install gyp-next
           # For the Chrome version only
           brew install go
+          # https://github.com/JCMais/node-libcurl/issues/296
+          brew install curl-openssl
+          #export PATH="/opt/homebrew/opt/curl/bin:$PATH"
+          export PATH="/usr/local/opt/curl/bin:$PATH"
       # not using brew for that one as we need 2.69
       - if: runner.os == 'macOS'
         name: Install autoconf on macOS
