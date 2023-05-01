@@ -135,10 +135,14 @@ jobs:
           # echo "CC=gcc-11" >> $GITHUB_ENV
           # echo "CXX=g++-11"
           # echo "CXX=g++-11" >> $GITHUB_ENV
-          echo "CC=$(brew --prefix llvm)/bin/clang"
-          echo "CC=$(brew --prefix llvm)/bin/clang" >> $GITHUB_ENV
-          echo "CXX=$(brew --prefix llvm)/bin/clang++"
-          echo "CXX=$(brew --prefix llvm)/bin/clang++" >> $GITHUB_ENV
+          # echo "CC=$(brew --prefix llvm)/bin/clang"
+          # echo "CC=$(brew --prefix llvm)/bin/clang" >> $GITHUB_ENV
+          # echo "CXX=$(brew --prefix llvm)/bin/clang++"
+          # echo "CXX=$(brew --prefix llvm)/bin/clang++" >> $GITHUB_ENV
+          # echo "CC=clang"
+          # echo "CC=clang" >> $GITHUB_ENV
+          # echo "CXX=clang++"
+          # echo "CXX=clang++" >> $GITHUB_ENV
       # not using brew for that one as we need 2.69
       - if: runner.os == 'macOS'
         name: Install autoconf on macOS
