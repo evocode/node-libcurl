@@ -31,8 +31,8 @@ if (args[0] !== validArgs[0] && args[0] !== validArgs[1]) {
   process.exit(-1)
 }
 
-const octo = octonode.client(process.env['NODE_LIBCURL_GITHUB_TOKEN'])
-const repo = octo.repo('JCMais/node-libcurl')
+const octo = octonode.client(process.env['NODE_LIBCURL_GITHUB_TOKEN'] || process.env['GITHUB_TOKEN'])
+const repo = octo.repo('evocode/node-libcurl')
 const commands = {
   publish: publish,
   unpublish: unpublish,
