@@ -291,7 +291,7 @@ export interface CurlInfo {
      */
     readonly RESPONSE_CODE: 'RESPONSE_CODE';
     /**
-     * The value from the from the Retry-After header.
+     * The value from the Retry-After header.
      *
      * Official libcurl documentation: : [https://curl.haxx.se/libcurl/c/CURLINFO_RETRY_AFTER.html](https://curl.haxx.se/libcurl/c/CURLINFO_RETRY_AFTER.html)
      */
@@ -422,9 +422,57 @@ export interface CurlInfo {
      * Official libcurl documentation: : [https://curl.haxx.se/libcurl/c/CURLINFO_TOTAL_TIME_T.html](https://curl.haxx.se/libcurl/c/CURLINFO_TOTAL_TIME_T.html)
      */
     readonly TOTAL_TIME_T: 'TOTAL_TIME_T';
+    /**
+     * (curl-impersonate) A list of headers used by the impersonated browser, merged with CURLOPT_HTTPHEADER.
+     *
+     * Official libcurl documentation: : [https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L94](https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L94)
+     */
+    readonly HTTPBASEHEADER: 'HTTPBASEHEADER';
+    /**
+     * (curl-impersonate) A list of TLS signature hash algorithms.
+     *
+     * Official libcurl documentation: : [https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L98](https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L98)
+     */
+    readonly SSL_SIG_HASH_ALGS: 'SSL_SIG_HASH_ALGS';
+    /**
+     * (curl-impersonate) TLS Client hello match Extension
+     *
+     * Official libcurl documentation: : [https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L104](https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L104)
+     */
+    readonly SSL_ENABLE_ALPS: 'SSL_ENABLE_ALPS';
+    /**
+     * (curl-impersonate) SSL Compression type. Eg. brotli
+     *
+     * Official libcurl documentation: : [https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L110](https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L110)
+     */
+    readonly SSL_CERT_COMPRESSION: 'SSL_CERT_COMPRESSION';
+    /**
+     * (curl-impersonate) Enable/disable TLS session ticket extension
+     *
+     * Official libcurl documentation: : [https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L113](https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L113)
+     */
+    readonly SSL_ENABLE_TICKET: 'SSL_ENABLE_TICKET';
+    /**
+     * (curl-impersonate) Set the order of the HTTP/2 pseudo headers. The value must contain the letters 'm', 'a', 's', 'p' representing the pseudo-headers ":method", ":authority", ":scheme", ":path" in the desired order of appearance in the HTTP/2 HEADERS frame.
+     *
+     * Official libcurl documentation: : [https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L122](https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L122)
+     */
+    readonly HTTP2_PSEUDO_HEADERS_ORDER: 'HTTP2_PSEUDO_HEADERS_ORDER';
+    /**
+     * (curl-impersonate) Disable HTTP2 server push in the HTTP2 SETTINGS.
+     *
+     * Official libcurl documentation: : [https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L128](https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L128)
+     */
+    readonly HTTP2_NO_SERVER_PUSH: 'HTTP2_NO_SERVER_PUSH';
+    /**
+     * (curl-impersonate)  Whether to enable Boringssl permute extensions.
+     *
+     * Official libcurl documentation: : [https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L134](https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L134)
+     */
+    readonly SSL_PERMUTE_EXTENSIONS: 'SSL_PERMUTE_EXTENSIONS';
 }
 /**
  * @public
  */
-export declare type CurlInfoName = 'ACTIVESOCKET' | 'APPCONNECT_TIME' | 'APPCONNECT_TIME_T' | 'CAINFO' | 'CAPATH' | 'CERTINFO' | 'CONDITION_UNMET' | 'CONNECT_TIME' | 'CONNECT_TIME_T' | 'CONTENT_LENGTH_DOWNLOAD' | 'CONTENT_LENGTH_DOWNLOAD_T' | 'CONTENT_LENGTH_UPLOAD' | 'CONTENT_LENGTH_UPLOAD_T' | 'CONTENT_TYPE' | 'COOKIELIST' | 'EFFECTIVE_METHOD' | 'EFFECTIVE_URL' | 'FILETIME' | 'FILETIME_T' | 'FTP_ENTRY_PATH' | 'HEADER_SIZE' | 'HTTP_CONNECTCODE' | 'HTTP_VERSION' | 'HTTPAUTH_AVAIL' | 'LASTSOCKET' | 'LOCAL_IP' | 'LOCAL_PORT' | 'NAMELOOKUP_TIME' | 'NAMELOOKUP_TIME_T' | 'NUM_CONNECTS' | 'OS_ERRNO' | 'PRETRANSFER_TIME' | 'PRETRANSFER_TIME_T' | 'PRIMARY_IP' | 'PRIMARY_PORT' | 'PRIVATE' | 'PROTOCOL' | 'PROXY_ERROR' | 'PROXY_SSL_VERIFYRESULT' | 'PROXYAUTH_AVAIL' | 'REDIRECT_COUNT' | 'REDIRECT_TIME' | 'REDIRECT_TIME_T' | 'REDIRECT_URL' | 'REFERER' | 'REQUEST_SIZE' | 'RESPONSE_CODE' | 'RETRY_AFTER' | 'RTSP_CLIENT_CSEQ' | 'RTSP_CSEQ_RECV' | 'RTSP_SERVER_CSEQ' | 'RTSP_SESSION_ID' | 'SCHEME' | 'SIZE_DOWNLOAD' | 'SIZE_DOWNLOAD_T' | 'SIZE_UPLOAD' | 'SIZE_UPLOAD_T' | 'SPEED_DOWNLOAD' | 'SPEED_DOWNLOAD_T' | 'SPEED_UPLOAD' | 'SPEED_UPLOAD_T' | 'SSL_ENGINES' | 'SSL_VERIFYRESULT' | 'STARTTRANSFER_TIME' | 'STARTTRANSFER_TIME_T' | 'TLS_SESSION' | 'TLS_SSL_PTR' | 'TOTAL_TIME' | 'TOTAL_TIME_T';
+export declare type CurlInfoName = 'ACTIVESOCKET' | 'APPCONNECT_TIME' | 'APPCONNECT_TIME_T' | 'CAINFO' | 'CAPATH' | 'CERTINFO' | 'CONDITION_UNMET' | 'CONNECT_TIME' | 'CONNECT_TIME_T' | 'CONTENT_LENGTH_DOWNLOAD' | 'CONTENT_LENGTH_DOWNLOAD_T' | 'CONTENT_LENGTH_UPLOAD' | 'CONTENT_LENGTH_UPLOAD_T' | 'CONTENT_TYPE' | 'COOKIELIST' | 'EFFECTIVE_METHOD' | 'EFFECTIVE_URL' | 'FILETIME' | 'FILETIME_T' | 'FTP_ENTRY_PATH' | 'HEADER_SIZE' | 'HTTP_CONNECTCODE' | 'HTTP_VERSION' | 'HTTPAUTH_AVAIL' | 'LASTSOCKET' | 'LOCAL_IP' | 'LOCAL_PORT' | 'NAMELOOKUP_TIME' | 'NAMELOOKUP_TIME_T' | 'NUM_CONNECTS' | 'OS_ERRNO' | 'PRETRANSFER_TIME' | 'PRETRANSFER_TIME_T' | 'PRIMARY_IP' | 'PRIMARY_PORT' | 'PRIVATE' | 'PROTOCOL' | 'PROXY_ERROR' | 'PROXY_SSL_VERIFYRESULT' | 'PROXYAUTH_AVAIL' | 'REDIRECT_COUNT' | 'REDIRECT_TIME' | 'REDIRECT_TIME_T' | 'REDIRECT_URL' | 'REFERER' | 'REQUEST_SIZE' | 'RESPONSE_CODE' | 'RETRY_AFTER' | 'RTSP_CLIENT_CSEQ' | 'RTSP_CSEQ_RECV' | 'RTSP_SERVER_CSEQ' | 'RTSP_SESSION_ID' | 'SCHEME' | 'SIZE_DOWNLOAD' | 'SIZE_DOWNLOAD_T' | 'SIZE_UPLOAD' | 'SIZE_UPLOAD_T' | 'SPEED_DOWNLOAD' | 'SPEED_DOWNLOAD_T' | 'SPEED_UPLOAD' | 'SPEED_UPLOAD_T' | 'SSL_ENGINES' | 'SSL_VERIFYRESULT' | 'STARTTRANSFER_TIME' | 'STARTTRANSFER_TIME_T' | 'TLS_SESSION' | 'TLS_SSL_PTR' | 'TOTAL_TIME' | 'TOTAL_TIME_T' | 'HTTPBASEHEADER' | 'SSL_SIG_HASH_ALGS' | 'SSL_ENABLE_ALPS' | 'SSL_CERT_COMPRESSION' | 'SSL_ENABLE_TICKET' | 'HTTP2_PSEUDO_HEADERS_ORDER' | 'HTTP2_NO_SERVER_PUSH' | 'SSL_PERMUTE_EXTENSIONS';
 //# sourceMappingURL=CurlInfo.d.ts.map

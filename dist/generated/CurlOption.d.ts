@@ -93,6 +93,12 @@ export interface CurlOption {
      */
     readonly BUFFERSIZE: 'BUFFERSIZE';
     /**
+     * Timeout for CA cache.
+     *
+     * Official libcurl documentation: : [https://curl.haxx.se/libcurl/c/CURLOPT_CA_CACHE_TIMEOUT.html](https://curl.haxx.se/libcurl/c/CURLOPT_CA_CACHE_TIMEOUT.html)
+     */
+    readonly CA_CACHE_TIMEOUT: 'CA_CACHE_TIMEOUT';
+    /**
      * CA cert bundle.
      *
      * Official libcurl documentation: : [https://curl.haxx.se/libcurl/c/CURLOPT_CAINFO.html](https://curl.haxx.se/libcurl/c/CURLOPT_CAINFO.html)
@@ -1045,6 +1051,12 @@ export interface CurlOption {
      */
     readonly PUT: 'PUT';
     /**
+     * To be set by toplevel tools like "curl" to skip lengthy cleanups when they are about to call exit() anyway.
+     *
+     * Official libcurl documentation: : [https://curl.haxx.se/libcurl/c/CURLOPT_QUICK_EXIT.html](https://curl.haxx.se/libcurl/c/CURLOPT_QUICK_EXIT.html)
+     */
+    readonly QUICK_EXIT: 'QUICK_EXIT';
+    /**
      * Commands to run before transfer.
      *
      * Official libcurl documentation: : [https://curl.haxx.se/libcurl/c/CURLOPT_QUOTE.html](https://curl.haxx.se/libcurl/c/CURLOPT_QUOTE.html)
@@ -1578,6 +1590,54 @@ export interface CurlOption {
      * Official libcurl documentation: : [https://curl.haxx.se/libcurl/c/CURLOPT_XOAUTH2_BEARER.html](https://curl.haxx.se/libcurl/c/CURLOPT_XOAUTH2_BEARER.html)
      */
     readonly XOAUTH2_BEARER: 'XOAUTH2_BEARER';
+    /**
+     * (curl-impersonate) A list of headers used by the impersonated browser, merged with CURLOPT_HTTPHEADER.
+     *
+     * Official libcurl documentation: : [https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L94](https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L94)
+     */
+    readonly HTTPBASEHEADER: 'HTTPBASEHEADER';
+    /**
+     * (curl-impersonate) A list of TLS signature hash algorithms.
+     *
+     * Official libcurl documentation: : [https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L98](https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L98)
+     */
+    readonly SSL_SIG_HASH_ALGS: 'SSL_SIG_HASH_ALGS';
+    /**
+     * (curl-impersonate) TLS Client hello match Extension
+     *
+     * Official libcurl documentation: : [https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L104](https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L104)
+     */
+    readonly SSL_ENABLE_ALPS: 'SSL_ENABLE_ALPS';
+    /**
+     * (curl-impersonate) SSL Compression type. Eg. brotli
+     *
+     * Official libcurl documentation: : [https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L110](https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L110)
+     */
+    readonly SSL_CERT_COMPRESSION: 'SSL_CERT_COMPRESSION';
+    /**
+     * (curl-impersonate) Enable/disable TLS session ticket extension
+     *
+     * Official libcurl documentation: : [https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L113](https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L113)
+     */
+    readonly SSL_ENABLE_TICKET: 'SSL_ENABLE_TICKET';
+    /**
+     * (curl-impersonate) Set the order of the HTTP/2 pseudo headers. The value must contain the letters 'm', 'a', 's', 'p' representing the pseudo-headers ":method", ":authority", ":scheme", ":path" in the desired order of appearance in the HTTP/2 HEADERS frame.
+     *
+     * Official libcurl documentation: : [https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L122](https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L122)
+     */
+    readonly HTTP2_PSEUDO_HEADERS_ORDER: 'HTTP2_PSEUDO_HEADERS_ORDER';
+    /**
+     * (curl-impersonate) Disable HTTP2 server push in the HTTP2 SETTINGS.
+     *
+     * Official libcurl documentation: : [https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L128](https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L128)
+     */
+    readonly HTTP2_NO_SERVER_PUSH: 'HTTP2_NO_SERVER_PUSH';
+    /**
+     * (curl-impersonate)  Whether to enable Boringssl permute extensions.
+     *
+     * Official libcurl documentation: : [https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L134](https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L134)
+     */
+    readonly SSL_PERMUTE_EXTENSIONS: 'SSL_PERMUTE_EXTENSIONS';
 }
 export declare const CurlOptionCamelCaseMap: {
     /**
@@ -1640,6 +1700,12 @@ export declare const CurlOptionCamelCaseMap: {
      * Official libcurl documentation: : [https://curl.haxx.se/libcurl/c/CURLOPT_BUFFERSIZE.html](https://curl.haxx.se/libcurl/c/CURLOPT_BUFFERSIZE.html)
      */
     readonly bufferSize: "BUFFERSIZE";
+    /**
+     * Timeout for CA cache.
+     *
+     * Official libcurl documentation: : [https://curl.haxx.se/libcurl/c/CURLOPT_CA_CACHE_TIMEOUT.html](https://curl.haxx.se/libcurl/c/CURLOPT_CA_CACHE_TIMEOUT.html)
+     */
+    readonly caCacheTimeout: "CA_CACHE_TIMEOUT";
     /**
      * CA cert bundle.
      *
@@ -2593,6 +2659,12 @@ export declare const CurlOptionCamelCaseMap: {
      */
     readonly put: "PUT";
     /**
+     * To be set by toplevel tools like "curl" to skip lengthy cleanups when they are about to call exit() anyway.
+     *
+     * Official libcurl documentation: : [https://curl.haxx.se/libcurl/c/CURLOPT_QUICK_EXIT.html](https://curl.haxx.se/libcurl/c/CURLOPT_QUICK_EXIT.html)
+     */
+    readonly quickExit: "QUICK_EXIT";
+    /**
      * Commands to run before transfer.
      *
      * Official libcurl documentation: : [https://curl.haxx.se/libcurl/c/CURLOPT_QUOTE.html](https://curl.haxx.se/libcurl/c/CURLOPT_QUOTE.html)
@@ -3126,11 +3198,59 @@ export declare const CurlOptionCamelCaseMap: {
      * Official libcurl documentation: : [https://curl.haxx.se/libcurl/c/CURLOPT_XOAUTH2_BEARER.html](https://curl.haxx.se/libcurl/c/CURLOPT_XOAUTH2_BEARER.html)
      */
     readonly xoauth2Bearer: "XOAUTH2_BEARER";
+    /**
+     * (curl-impersonate) A list of headers used by the impersonated browser, merged with CURLOPT_HTTPHEADER.
+     *
+     * Official libcurl documentation: : [https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L94](https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L94)
+     */
+    readonly httpBaseHeader: "HTTPBASEHEADER";
+    /**
+     * (curl-impersonate) A list of TLS signature hash algorithms.
+     *
+     * Official libcurl documentation: : [https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L98](https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L98)
+     */
+    readonly sslSigHashAlgs: "SSL_SIG_HASH_ALGS";
+    /**
+     * (curl-impersonate) TLS Client hello match Extension
+     *
+     * Official libcurl documentation: : [https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L104](https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L104)
+     */
+    readonly sslEnableAlps: "SSL_ENABLE_ALPS";
+    /**
+     * (curl-impersonate) SSL Compression type. Eg. brotli
+     *
+     * Official libcurl documentation: : [https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L110](https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L110)
+     */
+    readonly sslCompression: "SSL_CERT_COMPRESSION";
+    /**
+     * (curl-impersonate) Enable/disable TLS session ticket extension
+     *
+     * Official libcurl documentation: : [https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L113](https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L113)
+     */
+    readonly sslEnableTicket: "SSL_ENABLE_TICKET";
+    /**
+     * (curl-impersonate) Set the order of the HTTP/2 pseudo headers. The value must contain the letters 'm', 'a', 's', 'p' representing the pseudo-headers ":method", ":authority", ":scheme", ":path" in the desired order of appearance in the HTTP/2 HEADERS frame.
+     *
+     * Official libcurl documentation: : [https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L122](https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L122)
+     */
+    readonly http2PseudoHeadersOrder: "HTTP2_PSEUDO_HEADERS_ORDER";
+    /**
+     * (curl-impersonate) Disable HTTP2 server push in the HTTP2 SETTINGS.
+     *
+     * Official libcurl documentation: : [https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L128](https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L128)
+     */
+    readonly http2NoServerPush: "HTTP2_NO_SERVER_PUSH";
+    /**
+     * (curl-impersonate)  Whether to enable Boringssl permute extensions.
+     *
+     * Official libcurl documentation: : [https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L134](https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L134)
+     */
+    readonly sslPermuteExtensions: "SSL_PERMUTE_EXTENSIONS";
 };
 /**
  * @public
  */
-export declare type CurlOptionName = 'ABSTRACT_UNIX_SOCKET' | 'ACCEPT_ENCODING' | 'ACCEPTTIMEOUT_MS' | 'ADDRESS_SCOPE' | 'ALTSVC' | 'ALTSVC_CTRL' | 'APPEND' | 'AUTOREFERER' | 'AWS_SIGV4' | 'BUFFERSIZE' | 'CAINFO' | 'CAINFO_BLOB' | 'CAPATH' | 'CERTINFO' | 'CHUNK_BGN_FUNCTION' | 'CHUNK_END_FUNCTION' | 'CONNECT_ONLY' | 'CONNECT_TO' | 'CONNECTTIMEOUT' | 'CONNECTTIMEOUT_MS' | 'COOKIE' | 'COOKIEFILE' | 'COOKIEJAR' | 'COOKIELIST' | 'COOKIESESSION' | 'CRLF' | 'CRLFILE' | 'CUSTOMREQUEST' | 'DEBUGFUNCTION' | 'DEFAULT_PROTOCOL' | 'DIRLISTONLY' | 'DISALLOW_USERNAME_IN_URL' | 'DNS_CACHE_TIMEOUT' | 'DNS_INTERFACE' | 'DNS_LOCAL_IP4' | 'DNS_LOCAL_IP6' | 'DNS_SERVERS' | 'DNS_SHUFFLE_ADDRESSES' | 'DNS_USE_GLOBAL_CACHE' | 'DOH_SSL_VERIFYHOST' | 'DOH_SSL_VERIFYPEER' | 'DOH_SSL_VERIFYSTATUS' | 'DOH_URL' | 'EGDSOCKET' | 'EXPECT_100_TIMEOUT_MS' | 'FAILONERROR' | 'FILETIME' | 'FNMATCH_FUNCTION' | 'FOLLOWLOCATION' | 'FORBID_REUSE' | 'FRESH_CONNECT' | 'FTP_ACCOUNT' | 'FTP_ALTERNATIVE_TO_USER' | 'FTP_CREATE_MISSING_DIRS' | 'FTP_FILEMETHOD' | 'FTP_SKIP_PASV_IP' | 'FTP_SSL_CCC' | 'FTP_USE_EPRT' | 'FTP_USE_EPSV' | 'FTP_USE_PRET' | 'FTPPORT' | 'FTPSSLAUTH' | 'GSSAPI_DELEGATION' | 'HAPPY_EYEBALLS_TIMEOUT_MS' | 'HAPROXYPROTOCOL' | 'HEADER' | 'HEADERFUNCTION' | 'HEADEROPT' | 'HSTS' | 'HSTS_CTRL' | 'HSTSREADFUNCTION' | 'HSTSWRITEFUNCTION' | 'HTTP_CONTENT_DECODING' | 'HTTP_TRANSFER_DECODING' | 'HTTP_VERSION' | 'HTTP09_ALLOWED' | 'HTTP200ALIASES' | 'HTTPAUTH' | 'HTTPGET' | 'HTTPHEADER' | 'HTTPPOST' | 'HTTPPROXYTUNNEL' | 'IGNORE_CONTENT_LENGTH' | 'INFILESIZE' | 'INFILESIZE_LARGE' | 'INTERFACE' | 'IPRESOLVE' | 'ISSUERCERT' | 'ISSUERCERT_BLOB' | 'KEEP_SENDING_ON_ERROR' | 'KEYPASSWD' | 'KRBLEVEL' | 'LOCALPORT' | 'LOCALPORTRANGE' | 'LOGIN_OPTIONS' | 'LOW_SPEED_LIMIT' | 'LOW_SPEED_TIME' | 'MAIL_AUTH' | 'MAIL_FROM' | 'MAIL_RCPT' | 'MAIL_RCPT_ALLLOWFAILS' | 'MAX_RECV_SPEED_LARGE' | 'MAX_SEND_SPEED_LARGE' | 'MAXAGE_CONN' | 'MAXCONNECTS' | 'MAXFILESIZE' | 'MAXFILESIZE_LARGE' | 'MAXLIFETIME_CONN' | 'MAXREDIRS' | 'NETRC' | 'NETRC_FILE' | 'NEW_DIRECTORY_PERMS' | 'NEW_FILE_PERMS' | 'NOBODY' | 'NOPROGRESS' | 'NOPROXY' | 'NOSIGNAL' | 'PASSWORD' | 'PATH_AS_IS' | 'PINNEDPUBLICKEY' | 'PIPEWAIT' | 'PORT' | 'POST' | 'POSTFIELDS' | 'POSTFIELDSIZE' | 'POSTFIELDSIZE_LARGE' | 'POSTQUOTE' | 'POSTREDIR' | 'PRE_PROXY' | 'PREQUOTE' | 'PREREQFUNCTION' | 'PROGRESSFUNCTION' | 'PROTOCOLS' | 'PROTOCOLS_STR' | 'PROXY' | 'PROXY_CAINFO' | 'PROXY_CAINFO_BLOB' | 'PROXY_CAPATH' | 'PROXY_CRLFILE' | 'PROXY_ISSUERCERT' | 'PROXY_ISSUERCERT_BLOB' | 'PROXY_KEYPASSWD' | 'PROXY_PINNEDPUBLICKEY' | 'PROXY_SERVICE_NAME' | 'PROXY_SSL_CIPHER_LIST' | 'PROXY_SSL_OPTIONS' | 'PROXY_SSL_VERIFYHOST' | 'PROXY_SSL_VERIFYPEER' | 'PROXY_SSLCERT' | 'PROXY_SSLCERT_BLOB' | 'PROXY_SSLCERTTYPE' | 'PROXY_SSLKEY' | 'PROXY_SSLKEY_BLOB' | 'PROXY_SSLKEYTYPE' | 'PROXY_SSLVERSION' | 'PROXY_TLS13_CIPHERS' | 'PROXY_TLSAUTH_PASSWORD' | 'PROXY_TLSAUTH_TYPE' | 'PROXY_TLSAUTH_USERNAME' | 'PROXY_TRANSFER_MODE' | 'PROXYAUTH' | 'PROXYHEADER' | 'PROXYPASSWORD' | 'PROXYPORT' | 'PROXYTYPE' | 'PROXYUSERNAME' | 'PROXYUSERPWD' | 'PUT' | 'QUOTE' | 'RANDOM_FILE' | 'RANGE' | 'READDATA' | 'READFUNCTION' | 'REDIR_PROTOCOLS' | 'REDIR_PROTOCOLS_STR' | 'REFERER' | 'REQUEST_TARGET' | 'RESOLVE' | 'RESUME_FROM' | 'RESUME_FROM_LARGE' | 'RTSP_CLIENT_CSEQ' | 'RTSP_REQUEST' | 'RTSP_SERVER_CSEQ' | 'RTSP_SESSION_ID' | 'RTSP_STREAM_URI' | 'RTSP_TRANSPORT' | 'SASL_AUTHZID' | 'SASL_IR' | 'SEEKFUNCTION' | 'SERVER_RESPONSE_TIMEOUT' | 'SERVICE_NAME' | 'SHARE' | 'SOCKS5_AUTH' | 'SOCKS5_GSSAPI_NEC' | 'SOCKS5_GSSAPI_SERVICE' | 'SSH_AUTH_TYPES' | 'SSH_COMPRESSION' | 'SSH_HOST_PUBLIC_KEY_MD5' | 'SSH_HOSTKEYDATA' | 'SSH_KNOWNHOSTS' | 'SSH_PRIVATE_KEYFILE' | 'SSH_PUBLIC_KEYFILE' | 'SSL_CIPHER_LIST' | 'SSL_EC_CURVES' | 'SSL_ENABLE_ALPN' | 'SSL_ENABLE_NPN' | 'SSL_FALSESTART' | 'SSL_OPTIONS' | 'SSL_SESSIONID_CACHE' | 'SSL_VERIFYHOST' | 'SSL_VERIFYPEER' | 'SSL_VERIFYSTATUS' | 'SSLCERT' | 'SSLCERT_BLOB' | 'SSLCERTTYPE' | 'SSLENGINE' | 'SSLENGINE_DEFAULT' | 'SSLKEY' | 'SSLKEY_BLOB' | 'SSLKEYTYPE' | 'SSLVERSION' | 'SUPPRESS_CONNECT_HEADERS' | 'TCP_FASTOPEN' | 'TCP_KEEPALIVE' | 'TCP_KEEPIDLE' | 'TCP_KEEPINTVL' | 'TCP_NODELAY' | 'TELNETOPTIONS' | 'TFTP_BLKSIZE' | 'TFTP_NO_OPTIONS' | 'TIMECONDITION' | 'TIMEOUT' | 'TIMEOUT_MS' | 'TIMEVALUE' | 'TIMEVALUE_LARGE' | 'TLS13_CIPHERS' | 'TLSAUTH_PASSWORD' | 'TLSAUTH_TYPE' | 'TLSAUTH_USERNAME' | 'TRAILERFUNCTION' | 'TRANSFER_ENCODING' | 'TRANSFERTEXT' | 'UNIX_SOCKET_PATH' | 'UNRESTRICTED_AUTH' | 'UPKEEP_INTERVAL_MS' | 'UPLOAD' | 'UPLOAD_BUFFERSIZE' | 'URL' | 'USE_SSL' | 'USERAGENT' | 'USERNAME' | 'USERPWD' | 'VERBOSE' | 'WILDCARDMATCH' | 'WRITEFUNCTION' | 'XFERINFOFUNCTION' | 'XOAUTH2_BEARER';
+export declare type CurlOptionName = 'ABSTRACT_UNIX_SOCKET' | 'ACCEPT_ENCODING' | 'ACCEPTTIMEOUT_MS' | 'ADDRESS_SCOPE' | 'ALTSVC' | 'ALTSVC_CTRL' | 'APPEND' | 'AUTOREFERER' | 'AWS_SIGV4' | 'BUFFERSIZE' | 'CA_CACHE_TIMEOUT' | 'CAINFO' | 'CAINFO_BLOB' | 'CAPATH' | 'CERTINFO' | 'CHUNK_BGN_FUNCTION' | 'CHUNK_END_FUNCTION' | 'CONNECT_ONLY' | 'CONNECT_TO' | 'CONNECTTIMEOUT' | 'CONNECTTIMEOUT_MS' | 'COOKIE' | 'COOKIEFILE' | 'COOKIEJAR' | 'COOKIELIST' | 'COOKIESESSION' | 'CRLF' | 'CRLFILE' | 'CUSTOMREQUEST' | 'DEBUGFUNCTION' | 'DEFAULT_PROTOCOL' | 'DIRLISTONLY' | 'DISALLOW_USERNAME_IN_URL' | 'DNS_CACHE_TIMEOUT' | 'DNS_INTERFACE' | 'DNS_LOCAL_IP4' | 'DNS_LOCAL_IP6' | 'DNS_SERVERS' | 'DNS_SHUFFLE_ADDRESSES' | 'DNS_USE_GLOBAL_CACHE' | 'DOH_SSL_VERIFYHOST' | 'DOH_SSL_VERIFYPEER' | 'DOH_SSL_VERIFYSTATUS' | 'DOH_URL' | 'EGDSOCKET' | 'EXPECT_100_TIMEOUT_MS' | 'FAILONERROR' | 'FILETIME' | 'FNMATCH_FUNCTION' | 'FOLLOWLOCATION' | 'FORBID_REUSE' | 'FRESH_CONNECT' | 'FTP_ACCOUNT' | 'FTP_ALTERNATIVE_TO_USER' | 'FTP_CREATE_MISSING_DIRS' | 'FTP_FILEMETHOD' | 'FTP_SKIP_PASV_IP' | 'FTP_SSL_CCC' | 'FTP_USE_EPRT' | 'FTP_USE_EPSV' | 'FTP_USE_PRET' | 'FTPPORT' | 'FTPSSLAUTH' | 'GSSAPI_DELEGATION' | 'HAPPY_EYEBALLS_TIMEOUT_MS' | 'HAPROXYPROTOCOL' | 'HEADER' | 'HEADERFUNCTION' | 'HEADEROPT' | 'HSTS' | 'HSTS_CTRL' | 'HSTSREADFUNCTION' | 'HSTSWRITEFUNCTION' | 'HTTP_CONTENT_DECODING' | 'HTTP_TRANSFER_DECODING' | 'HTTP_VERSION' | 'HTTP09_ALLOWED' | 'HTTP200ALIASES' | 'HTTPAUTH' | 'HTTPGET' | 'HTTPHEADER' | 'HTTPPOST' | 'HTTPPROXYTUNNEL' | 'IGNORE_CONTENT_LENGTH' | 'INFILESIZE' | 'INFILESIZE_LARGE' | 'INTERFACE' | 'IPRESOLVE' | 'ISSUERCERT' | 'ISSUERCERT_BLOB' | 'KEEP_SENDING_ON_ERROR' | 'KEYPASSWD' | 'KRBLEVEL' | 'LOCALPORT' | 'LOCALPORTRANGE' | 'LOGIN_OPTIONS' | 'LOW_SPEED_LIMIT' | 'LOW_SPEED_TIME' | 'MAIL_AUTH' | 'MAIL_FROM' | 'MAIL_RCPT' | 'MAIL_RCPT_ALLLOWFAILS' | 'MAX_RECV_SPEED_LARGE' | 'MAX_SEND_SPEED_LARGE' | 'MAXAGE_CONN' | 'MAXCONNECTS' | 'MAXFILESIZE' | 'MAXFILESIZE_LARGE' | 'MAXLIFETIME_CONN' | 'MAXREDIRS' | 'NETRC' | 'NETRC_FILE' | 'NEW_DIRECTORY_PERMS' | 'NEW_FILE_PERMS' | 'NOBODY' | 'NOPROGRESS' | 'NOPROXY' | 'NOSIGNAL' | 'PASSWORD' | 'PATH_AS_IS' | 'PINNEDPUBLICKEY' | 'PIPEWAIT' | 'PORT' | 'POST' | 'POSTFIELDS' | 'POSTFIELDSIZE' | 'POSTFIELDSIZE_LARGE' | 'POSTQUOTE' | 'POSTREDIR' | 'PRE_PROXY' | 'PREQUOTE' | 'PREREQFUNCTION' | 'PROGRESSFUNCTION' | 'PROTOCOLS' | 'PROTOCOLS_STR' | 'PROXY' | 'PROXY_CAINFO' | 'PROXY_CAINFO_BLOB' | 'PROXY_CAPATH' | 'PROXY_CRLFILE' | 'PROXY_ISSUERCERT' | 'PROXY_ISSUERCERT_BLOB' | 'PROXY_KEYPASSWD' | 'PROXY_PINNEDPUBLICKEY' | 'PROXY_SERVICE_NAME' | 'PROXY_SSL_CIPHER_LIST' | 'PROXY_SSL_OPTIONS' | 'PROXY_SSL_VERIFYHOST' | 'PROXY_SSL_VERIFYPEER' | 'PROXY_SSLCERT' | 'PROXY_SSLCERT_BLOB' | 'PROXY_SSLCERTTYPE' | 'PROXY_SSLKEY' | 'PROXY_SSLKEY_BLOB' | 'PROXY_SSLKEYTYPE' | 'PROXY_SSLVERSION' | 'PROXY_TLS13_CIPHERS' | 'PROXY_TLSAUTH_PASSWORD' | 'PROXY_TLSAUTH_TYPE' | 'PROXY_TLSAUTH_USERNAME' | 'PROXY_TRANSFER_MODE' | 'PROXYAUTH' | 'PROXYHEADER' | 'PROXYPASSWORD' | 'PROXYPORT' | 'PROXYTYPE' | 'PROXYUSERNAME' | 'PROXYUSERPWD' | 'PUT' | 'QUICK_EXIT' | 'QUOTE' | 'RANDOM_FILE' | 'RANGE' | 'READDATA' | 'READFUNCTION' | 'REDIR_PROTOCOLS' | 'REDIR_PROTOCOLS_STR' | 'REFERER' | 'REQUEST_TARGET' | 'RESOLVE' | 'RESUME_FROM' | 'RESUME_FROM_LARGE' | 'RTSP_CLIENT_CSEQ' | 'RTSP_REQUEST' | 'RTSP_SERVER_CSEQ' | 'RTSP_SESSION_ID' | 'RTSP_STREAM_URI' | 'RTSP_TRANSPORT' | 'SASL_AUTHZID' | 'SASL_IR' | 'SEEKFUNCTION' | 'SERVER_RESPONSE_TIMEOUT' | 'SERVICE_NAME' | 'SHARE' | 'SOCKS5_AUTH' | 'SOCKS5_GSSAPI_NEC' | 'SOCKS5_GSSAPI_SERVICE' | 'SSH_AUTH_TYPES' | 'SSH_COMPRESSION' | 'SSH_HOST_PUBLIC_KEY_MD5' | 'SSH_HOSTKEYDATA' | 'SSH_KNOWNHOSTS' | 'SSH_PRIVATE_KEYFILE' | 'SSH_PUBLIC_KEYFILE' | 'SSL_CIPHER_LIST' | 'SSL_EC_CURVES' | 'SSL_ENABLE_ALPN' | 'SSL_ENABLE_NPN' | 'SSL_FALSESTART' | 'SSL_OPTIONS' | 'SSL_SESSIONID_CACHE' | 'SSL_VERIFYHOST' | 'SSL_VERIFYPEER' | 'SSL_VERIFYSTATUS' | 'SSLCERT' | 'SSLCERT_BLOB' | 'SSLCERTTYPE' | 'SSLENGINE' | 'SSLENGINE_DEFAULT' | 'SSLKEY' | 'SSLKEY_BLOB' | 'SSLKEYTYPE' | 'SSLVERSION' | 'SUPPRESS_CONNECT_HEADERS' | 'TCP_FASTOPEN' | 'TCP_KEEPALIVE' | 'TCP_KEEPIDLE' | 'TCP_KEEPINTVL' | 'TCP_NODELAY' | 'TELNETOPTIONS' | 'TFTP_BLKSIZE' | 'TFTP_NO_OPTIONS' | 'TIMECONDITION' | 'TIMEOUT' | 'TIMEOUT_MS' | 'TIMEVALUE' | 'TIMEVALUE_LARGE' | 'TLS13_CIPHERS' | 'TLSAUTH_PASSWORD' | 'TLSAUTH_TYPE' | 'TLSAUTH_USERNAME' | 'TRAILERFUNCTION' | 'TRANSFER_ENCODING' | 'TRANSFERTEXT' | 'UNIX_SOCKET_PATH' | 'UNRESTRICTED_AUTH' | 'UPKEEP_INTERVAL_MS' | 'UPLOAD' | 'UPLOAD_BUFFERSIZE' | 'URL' | 'USE_SSL' | 'USERAGENT' | 'USERNAME' | 'USERPWD' | 'VERBOSE' | 'WILDCARDMATCH' | 'WRITEFUNCTION' | 'XFERINFOFUNCTION' | 'XOAUTH2_BEARER' | 'HTTPBASEHEADER' | 'SSL_SIG_HASH_ALGS' | 'SSL_ENABLE_ALPS' | 'SSL_CERT_COMPRESSION' | 'SSL_ENABLE_TICKET' | 'HTTP2_PSEUDO_HEADERS_ORDER' | 'HTTP2_NO_SERVER_PUSH' | 'SSL_PERMUTE_EXTENSIONS';
 import { FileInfo, HttpPostField } from '../types';
 export declare type DataCallbackOptions = 'READFUNCTION' | 'HEADERFUNCTION' | 'WRITEFUNCTION';
 export declare type ProgressCallbackOptions = 'PROGRESSFUNCTION' | 'XFERINFOFUNCTION';
@@ -3261,6 +3381,18 @@ export declare type CurlOptionValueType = {
      * Official libcurl documentation: : [https://curl.haxx.se/libcurl/c/CURLOPT_BUFFERSIZE.html](https://curl.haxx.se/libcurl/c/CURLOPT_BUFFERSIZE.html)
      */
     bufferSize?: string | number | boolean | null;
+    /**
+     * Timeout for CA cache.
+     *
+     * Official libcurl documentation: : [https://curl.haxx.se/libcurl/c/CURLOPT_CA_CACHE_TIMEOUT.html](https://curl.haxx.se/libcurl/c/CURLOPT_CA_CACHE_TIMEOUT.html)
+     */
+    CA_CACHE_TIMEOUT?: string | number | boolean | null;
+    /**
+     * Timeout for CA cache.
+     *
+     * Official libcurl documentation: : [https://curl.haxx.se/libcurl/c/CURLOPT_CA_CACHE_TIMEOUT.html](https://curl.haxx.se/libcurl/c/CURLOPT_CA_CACHE_TIMEOUT.html)
+     */
+    caCacheTimeout?: string | number | boolean | null;
     /**
      * CA cert bundle.
      *
@@ -5166,6 +5298,18 @@ export declare type CurlOptionValueType = {
      */
     put?: string | number | boolean | null;
     /**
+     * To be set by toplevel tools like "curl" to skip lengthy cleanups when they are about to call exit() anyway.
+     *
+     * Official libcurl documentation: : [https://curl.haxx.se/libcurl/c/CURLOPT_QUICK_EXIT.html](https://curl.haxx.se/libcurl/c/CURLOPT_QUICK_EXIT.html)
+     */
+    QUICK_EXIT?: string | number | boolean | null;
+    /**
+     * To be set by toplevel tools like "curl" to skip lengthy cleanups when they are about to call exit() anyway.
+     *
+     * Official libcurl documentation: : [https://curl.haxx.se/libcurl/c/CURLOPT_QUICK_EXIT.html](https://curl.haxx.se/libcurl/c/CURLOPT_QUICK_EXIT.html)
+     */
+    quickExit?: string | number | boolean | null;
+    /**
      * Commands to run before transfer.
      *
      * Official libcurl documentation: : [https://curl.haxx.se/libcurl/c/CURLOPT_QUOTE.html](https://curl.haxx.se/libcurl/c/CURLOPT_QUOTE.html)
@@ -6233,5 +6377,101 @@ export declare type CurlOptionValueType = {
      * Official libcurl documentation: : [https://curl.haxx.se/libcurl/c/CURLOPT_XOAUTH2_BEARER.html](https://curl.haxx.se/libcurl/c/CURLOPT_XOAUTH2_BEARER.html)
      */
     xoauth2Bearer?: string | number | boolean | null;
+    /**
+     * (curl-impersonate) A list of headers used by the impersonated browser, merged with CURLOPT_HTTPHEADER.
+     *
+     * Official libcurl documentation: : [https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L94](https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L94)
+     */
+    HTTPBASEHEADER?: string | number | boolean | null;
+    /**
+     * (curl-impersonate) A list of headers used by the impersonated browser, merged with CURLOPT_HTTPHEADER.
+     *
+     * Official libcurl documentation: : [https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L94](https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L94)
+     */
+    httpBaseHeader?: string | number | boolean | null;
+    /**
+     * (curl-impersonate) A list of TLS signature hash algorithms.
+     *
+     * Official libcurl documentation: : [https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L98](https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L98)
+     */
+    SSL_SIG_HASH_ALGS?: string | number | boolean | null;
+    /**
+     * (curl-impersonate) A list of TLS signature hash algorithms.
+     *
+     * Official libcurl documentation: : [https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L98](https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L98)
+     */
+    sslSigHashAlgs?: string | number | boolean | null;
+    /**
+     * (curl-impersonate) TLS Client hello match Extension
+     *
+     * Official libcurl documentation: : [https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L104](https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L104)
+     */
+    SSL_ENABLE_ALPS?: string | number | boolean | null;
+    /**
+     * (curl-impersonate) TLS Client hello match Extension
+     *
+     * Official libcurl documentation: : [https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L104](https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L104)
+     */
+    sslEnableAlps?: string | number | boolean | null;
+    /**
+     * (curl-impersonate) SSL Compression type. Eg. brotli
+     *
+     * Official libcurl documentation: : [https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L110](https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L110)
+     */
+    SSL_CERT_COMPRESSION?: string | number | boolean | null;
+    /**
+     * (curl-impersonate) SSL Compression type. Eg. brotli
+     *
+     * Official libcurl documentation: : [https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L110](https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L110)
+     */
+    sslCompression?: string | number | boolean | null;
+    /**
+     * (curl-impersonate) Enable/disable TLS session ticket extension
+     *
+     * Official libcurl documentation: : [https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L113](https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L113)
+     */
+    SSL_ENABLE_TICKET?: string | number | boolean | null;
+    /**
+     * (curl-impersonate) Enable/disable TLS session ticket extension
+     *
+     * Official libcurl documentation: : [https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L113](https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L113)
+     */
+    sslEnableTicket?: string | number | boolean | null;
+    /**
+     * (curl-impersonate) Set the order of the HTTP/2 pseudo headers. The value must contain the letters 'm', 'a', 's', 'p' representing the pseudo-headers ":method", ":authority", ":scheme", ":path" in the desired order of appearance in the HTTP/2 HEADERS frame.
+     *
+     * Official libcurl documentation: : [https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L122](https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L122)
+     */
+    HTTP2_PSEUDO_HEADERS_ORDER?: string | number | boolean | null;
+    /**
+     * (curl-impersonate) Set the order of the HTTP/2 pseudo headers. The value must contain the letters 'm', 'a', 's', 'p' representing the pseudo-headers ":method", ":authority", ":scheme", ":path" in the desired order of appearance in the HTTP/2 HEADERS frame.
+     *
+     * Official libcurl documentation: : [https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L122](https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L122)
+     */
+    http2PseudoHeadersOrder?: string | number | boolean | null;
+    /**
+     * (curl-impersonate) Disable HTTP2 server push in the HTTP2 SETTINGS.
+     *
+     * Official libcurl documentation: : [https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L128](https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L128)
+     */
+    HTTP2_NO_SERVER_PUSH?: string | number | boolean | null;
+    /**
+     * (curl-impersonate) Disable HTTP2 server push in the HTTP2 SETTINGS.
+     *
+     * Official libcurl documentation: : [https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L128](https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L128)
+     */
+    http2NoServerPush?: string | number | boolean | null;
+    /**
+     * (curl-impersonate)  Whether to enable Boringssl permute extensions.
+     *
+     * Official libcurl documentation: : [https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L134](https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L134)
+     */
+    SSL_PERMUTE_EXTENSIONS?: string | number | boolean | null;
+    /**
+     * (curl-impersonate)  Whether to enable Boringssl permute extensions.
+     *
+     * Official libcurl documentation: : [https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L134](https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L134)
+     */
+    sslPermuteExtensions?: string | number | boolean | null;
 };
 //# sourceMappingURL=CurlOption.d.ts.map

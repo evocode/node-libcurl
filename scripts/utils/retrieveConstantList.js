@@ -2,6 +2,7 @@ const cheerio = require('cheerio')
 
 const { curly } = require('../../dist')
 const { optionExtraDescriptionValueMap } = require('../data/options')
+const { optionImpersonateList } = require('../data/options-impersonate')
 
 const {
   convertCurlConstantToCamelCase,
@@ -50,6 +51,7 @@ const retrieveConstantList = async ({ url, constantPrefix, blacklist }) => {
     .get()
     .sort((a, b) => a.constantName.localeCompare(b.constantName))
     .filter((item) => !blacklist.includes(item.constantOriginal))
+    .concat(optionImpersonateList)
 }
 
 module.exports = {
