@@ -24,7 +24,7 @@ const optionImpersonateList = [
   {
     constantOriginal: 'CURLOPT_SSL_CERT_COMPRESSION',
     constantName: 'SSL_CERT_COMPRESSION',
-    constantNameCamelCase: 'sslCompression',
+    constantNameCamelCase: 'sslCertCompression',
     description: '(curl-impersonate) SSL Compression type. Eg. brotli',
     url: 'https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L110',
   },
