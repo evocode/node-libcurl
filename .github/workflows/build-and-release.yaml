@@ -105,7 +105,6 @@ jobs:
           fi
 
           # Add gyp to PATH
-          #export PATH="$PATH:~/.local/bin"
           echo "$HOME/.local/bin" >> $GITHUB_PATH
       - name: Checkout
         uses: actions/checkout@main
@@ -126,31 +125,6 @@ jobs:
           #pip3 install gyp-next
           # For the Chrome version only
           brew install go
-          # https://github.com/JCMais/node-libcurl/issues/296
-          #brew install curl-openssl
-          #export PATH="/opt/homebrew/opt/curl/bin:$PATH"
-          #export PATH="/usr/local/opt/curl/bin:$PATH"
-          #echo "/usr/local/opt/curl/bin" >> $GITHUB_PATH
-          # echo "CC=gcc"
-          # echo "CC=gcc" >> $GITHUB_ENV
-          # echo "CXX=g++"
-          # echo "CXX=g++" >> $GITHUB_ENV
-          # echo "CC=gcc-12"
-          # echo "CC=gcc-12" >> $GITHUB_ENV
-          # echo "CXX=g++-12"
-          # echo "CXX=g++-12" >> $GITHUB_ENV
-          # echo "CC=$(which gcc-12)"
-          # echo "CC=$(which gcc-12)" >> $GITHUB_ENV
-          # echo "CXX=$(which g++-12)"
-          # echo "CXX=$(which g++-12)" >> $GITHUB_ENV
-          # echo "CC=$(brew --prefix llvm)/bin/clang"
-          # echo "CC=$(brew --prefix llvm)/bin/clang" >> $GITHUB_ENV
-          # echo "CXX=$(brew --prefix llvm)/bin/clang++"
-          # echo "CXX=$(brew --prefix llvm)/bin/clang++" >> $GITHUB_ENV
-          # echo "CC=clang"
-          # echo "CC=clang" >> $GITHUB_ENV
-          # echo "CXX=clang++"
-          # echo "CXX=clang++" >> $GITHUB_ENV
       # not using brew for that one as we need 2.69
       - if: runner.os == 'macOS'
         name: Install autoconf on macOS
@@ -163,18 +137,6 @@ jobs:
           make install
           autoconf --version
           ln -s /usr/local/bin/glibtoolize /usr/local/bin/libtoolize
-      - if: runner.os == 'macOS'
-        name: Debug macOS
-        run: |
-          env
-          which cmake && cmake --version
-          which make && make --version
-          which autoconf && autoconf --version
-          which python && python --version
-          # echo $CC && $CC --version
-          # which $CC && $CC --version
-          # echo $CXX && $CXX --version
-          # which $CXX && $CXX --version
       - name: Output yarn cache dir
         id: yarn-cache-dir
         run: echo "::set-output name=dir::$(yarn cache dir)"

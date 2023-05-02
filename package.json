@@ -48,10 +48,10 @@
     "pregyp": "node-pre-gyp",
     "prettier": "prettier --write",
     "prettier:all": "yarn prettier lib/**/*.ts tools/**/*.js scripts/**/*.js test/**/*.ts examples/**/*.js",
-    "test": "mocha --require ts-node/register test/**/*.spec.ts --reporter spec --timeout 80000",
+    "test": "mocha --require ts-node/register test/**/*.spec.ts --reporter spec --timeout 60000",
     "test:coverage": "nyc yarn test",
     "test:debug:gdb": "gdb --args node ./node_modules/.bin/mocha -r ts-node/register test/curl/hsts.spec.ts",
-    "test:electron": "electron-mocha --require ts-node/register test/**/*.spec.ts --reporter spec --timeout 80000",
+    "test:electron": "electron-mocha --require ts-node/register test/**/*.spec.ts --reporter spec --timeout 60000",
     "test:watch": "yarn test --watch --watch-files lib/*.ts lib/**/*.ts test/**/*.spec.ts",
     "preversion": "yarn lint && yarn clean:dist && yarn build:dist"
   },
