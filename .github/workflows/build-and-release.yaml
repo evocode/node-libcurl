@@ -20,7 +20,7 @@ on:
         required: true
 
 env:
-  NODE_LIBCURL_GITHUB_TOKEN: ${{ secrets.NODE_LIBCURL_GITHUB_TOKEN }}
+  NODE_LIBCURL_GITHUB_TOKEN: ${{ github.token }}
   PUBLISH_BINARY: ${{ github.event.inputs.publish-binary }}
   NODE_LIBCURL_CPP_STD: c++17
 
