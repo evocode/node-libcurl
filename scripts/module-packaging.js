@@ -9,7 +9,7 @@ const log = require('npmlog')
 const fs = require('fs')
 const path = require('path')
 const pkg = require('../package.json')
-const repo = new URL(pkg.repository.url).pathname.replace('.git', '')
+const reponame = new URL(pkg.repository.url).pathname.replace('.git', '')
 const versionTag =
   process.env['NODE_LIBCURL_VERSION_TAG'] ||
   'v' + pkg.version //current version of the package.
@@ -34,7 +34,7 @@ if (args[0] !== validArgs[0] && args[0] !== validArgs[1]) {
 }
 
 const octo = octonode.client(process.env['NODE_LIBCURL_GITHUB_TOKEN'] || process.env['GITHUB_TOKEN'])
-const repo = octo.repo(repo)
+const repo = octo.repo(reponame)
 const commands = {
   publish: publish,
   unpublish: unpublish,
