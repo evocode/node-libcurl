@@ -9,7 +9,7 @@ const log = require('npmlog')
 const fs = require('fs')
 const path = require('path')
 const pkg = require('../package.json')
-const reponame = new URL(pkg.repository.url).pathname.replace('.git', '')
+const reponame = new URL(pkg.homepage).pathname.replace('.git', '').replace(/^\/+/, '')
 const versionTag =
   process.env['NODE_LIBCURL_VERSION_TAG'] ||
   'v' + pkg.version //current version of the package.
