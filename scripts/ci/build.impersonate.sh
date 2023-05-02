@@ -27,7 +27,8 @@ python3 -V || true
 if [ "$(uname)" == "Darwin" ]; then
   # Default to universal build, if possible.
   if [ -z "$MACOS_UNIVERSAL_BUILD" ]; then
-    export MACOS_UNIVERSAL_BUILD="$(node -e "console.log(process.versions.openssl >= '1.1.1i')")"
+    # export MACOS_UNIVERSAL_BUILD="$(node -e "console.log(process.versions.openssl >= '1.1.1i')")"
+    export MACOS_UNIVERSAL_BUILD="false"
   fi
 
   if [ "$MACOS_UNIVERSAL_BUILD" == "true" ]; then
