@@ -35,7 +35,9 @@ if [ "$(uname)" == "Darwin" ]; then
     export CMAKE_OSX_ARCHITECTURES="arm64;x86_64"
     export MACOS_ARCH_FLAGS="-arch arm64 -arch x86_64"
   else
-    export MACOS_ARCH_FLAGS=""
+    # export MACOS_ARCH_FLAGS=""
+    export CMAKE_OSX_ARCHITECTURES="x86_64"
+    export MACOS_ARCH_FLAGS="-arch x86_64"
   fi
 
   export MACOSX_DEPLOYMENT_TARGET=11.6
