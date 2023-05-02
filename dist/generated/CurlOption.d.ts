@@ -3221,7 +3221,7 @@ export declare const CurlOptionCamelCaseMap: {
      *
      * Official libcurl documentation: : [https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L110](https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L110)
      */
-    readonly sslCompression: "SSL_CERT_COMPRESSION";
+    readonly sslCertCompression: "SSL_CERT_COMPRESSION";
     /**
      * (curl-impersonate) Enable/disable TLS session ticket extension
      *
@@ -6424,7 +6424,7 @@ export declare type CurlOptionValueType = {
      *
      * Official libcurl documentation: : [https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L110](https://github.com/lwthiker/curl-impersonate/blob/main/chrome/patches/curl-impersonate.patch#L110)
      */
-    sslCompression?: string | number | boolean | null;
+    sslCertCompression?: string | number | boolean | null;
     /**
      * (curl-impersonate) Enable/disable TLS session ticket extension
      *
