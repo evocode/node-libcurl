@@ -36,7 +36,7 @@ const onStream: OnStreamFn = (stream, _headers) => {
   stream.end('<h1>Hello World</h1>')
 }
 
-xdescribe('HTTP2', () => {
+describe('HTTP2', () => {
   before((done) => {
     serverHttp2.on('error', onError)
     serverHttp2.on('session', onSession)
