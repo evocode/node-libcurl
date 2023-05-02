@@ -42,6 +42,13 @@ const commands = {
 
 commands[args[0].replace('--', '')](args[1])
 
+log.info(
+  '',
+  'executing command "%s" with argument "%s"',
+  args[0].replace('--', ''),
+  args[1],
+)
+
 function publish(pathToPackage) {
   getReleaseByTag(versionTag, (error, data, headers) => {
     if (error) {
