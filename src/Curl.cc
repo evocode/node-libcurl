@@ -261,6 +261,10 @@ const std::vector<CurlConstant> curlOptionInteger = {
     {"SSL_VERIFYSTATUS", CURLOPT_SSL_VERIFYSTATUS},
 #endif
 
+#if NODE_LIBCURL_VER_GE(7, 42, 0)
+    {"SSL_FALSESTART", CURLOPT_SSL_FALSESTART},
+#endif
+
     {"SSLVERSION", CURLOPT_SSLVERSION},
 
 #if NODE_LIBCURL_VER_GE(7, 54, 0)
