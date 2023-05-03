@@ -39,6 +39,9 @@ jobs:
           - ubuntu-22.04
         libcurl-release:
           - 7.86.0
+        # https://github.com/evocode/curl-impersonate/blob/main/Makefile.in#LL19C17-L19C28
+        libcurlimpersonate-libcurl:
+          - 7.84.0
         libcurlimpersonate-release:
           - 0.5.4
         node:
@@ -49,6 +52,7 @@ jobs:
     env:
       LIBCURL_RELEASE: ${{ matrix.libcurl-release }}
       LATEST_LIBCURL_RELEASE: ${{ matrix.libcurl-release }}
+      LIBCURLIMPERSONATE_LIBCURL: ${{ matrix.libcurlimpersonate-libcurl }}
       LIBCURLIMPERSONATE_RELEASE: ${{ matrix.libcurlimpersonate-release }}
       LATEST_LIBCURLIMPERSONATE_RELEASE: ${{ matrix.libcurlimpersonate-release }}
     steps:
