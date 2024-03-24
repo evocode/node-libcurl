@@ -9,10 +9,10 @@ const log = require('npmlog')
 const fs = require('fs')
 const path = require('path')
 const pkg = require('../package.json')
-const reponame = new URL(pkg.homepage).pathname
+const repoUrl = new URL(pkg.homepage).pathname
   .replace('.git', '')
   .replace(/^\/+/, '')
-const versionTag = process.env['NODE_LIBCURL_VERSION_TAG'] || 'v' + pkg.version //current version of the package.
+const tag = process.env['NODE_LIBCURL_VERSION_TAG'] || 'v' + pkg.version //current version of the package.
 
 const args = process.argv.splice(2, 2)
 const validArgs = ['--publish', '--unpublish']
@@ -37,7 +37,7 @@ const octo = new Octokit({
   auth: process.env['NODE_LIBCURL_GITHUB_TOKEN'],
 })
 
-const [owner, repo] = reponame.split('/')
+const [owner, repo] = repoUrl.split('/')
 const commands = {
   publish: publish,
   unpublish: unpublish,
