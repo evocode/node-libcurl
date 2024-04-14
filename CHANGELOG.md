@@ -12,6 +12,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed  
 ### Removed  
 
+## [4.0.0]
+
+### Breaking Change  
+- Mininum supported Node.js version is now Node.js 16.14.
+- The prebuilt binaries are only available on:
+  - Node.js 18, 20, and 21
+  - Electron 27, 27, and 28
+- NW.js binaries were removed, and may be re-introduced in the future.
+
 ## [3.0.0] - 2022-11-17
 
 ### Breaking Change  
