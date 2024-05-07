@@ -88,8 +88,9 @@ jobs:
             # we will assume a lot of other ones are missing
             sudo apt-get install -y software-properties-common
             sudo apt-add-repository ppa:git-core/ppa && sudo apt-get update && sudo apt-get install -y build-essential git curl wget python autoconf libtool-bin m4 groff groff-base pkg-config automake bzip2 apt-transport-https ca-certificates
-            sudo apt-get install python3.10-distutils
           fi
+
+          sudo apt-get install -y python3.10-distutils zstd libzstd-dev
 
           if ! command -v yarn; then
             echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
