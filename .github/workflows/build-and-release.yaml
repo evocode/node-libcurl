@@ -36,13 +36,15 @@ jobs:
         os:
           - macos-14
           - ubuntu-22.04
+        # https://github.com/JCMais/node-libcurl/blob/develop/.github/workflows/build-and-release.yaml#L40
         libcurl-release:
           - 7.86.0
-        # https://github.com/evocode/curl-impersonate/blob/main/Makefile.in#LL19C17-L19C28
+        # https://github.com/evocode/curl-impersonate/blob/main/Makefile.in#L18
         libcurlimpersonate-libcurl:
-          - 7.84.0
+          - 8.5.0
+        # https://github.com/yifeikong/curl-impersonate/releases
         libcurlimpersonate-release:
-          - 0.5.4
+          - 0.7.0b4
         node:
           - 20
           - 22
