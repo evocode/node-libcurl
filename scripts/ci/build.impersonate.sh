@@ -81,9 +81,9 @@ mkdir -p $LOGS_FOLDER
 # so we are making sure we remove those so they do not mess with our build
 if [[ -n "$CI" && "$(uname)" == "Darwin" ]]; then
   echo "include folder:"
-  ls -al /usr/local/include 2>/dev/null
+  ls -ald /usr/local/include
   echo "lib folder:"
-  ls -al /usr/local/lib 2>/dev/null
+  ls -ald /usr/local/lib
   # delete all libraries we are building on this file from /usr/local/lib
   rm -rf /usr/local/include/{nghttp2,openssl,curl}
   rm -rf     /usr/local/lib/{nghttp2,openssl,curl}
