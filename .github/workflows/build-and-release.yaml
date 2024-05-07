@@ -122,7 +122,7 @@ jobs:
       - if: runner.os == 'macOS'
         name: Install Needed packages on macOS
         run: |
-          brew install coreutils wget automake libtool make cmake ninja gnu-sed m4 pkg-config python-setuptools
+          brew install coreutils wget automake libtool make cmake ninja gnu-sed m4 pkg-config python-setuptools zstd
           echo "/usr/local/opt/coreutils/libexec/gnubin" >> $GITHUB_PATH
           echo "/usr/local/opt/gnu-sed/libexec/gnubin" >> $GITHUB_PATH
           # For the Firefox version only
